@@ -1,7 +1,10 @@
 package GestionNotes.BLL;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import GestionNotes.BO.Eleve;
 
@@ -9,7 +12,14 @@ public class NotesManagerClassic implements INotesManager {
 
 	@Override
 	public void AjouterEleveNote(Eleve eleve, Double note) {
-		eleve.getNotes().add(note);
+		if (note  <= 20 && note >=0) {
+			eleve.getNotes().add(note);
+		} else if(note > 20) {
+			eleve.getNotes().add(20.0);
+		}
+		else if(note  < 0) {
+			eleve.getNotes().add(0.0);
+		}
 		
 	}
 
@@ -38,27 +48,34 @@ public class NotesManagerClassic implements INotesManager {
 
 	@Override
 	public List<Double> CalculMoyenneParClasse(List<Eleve> l) {
-		List<String> classes =new ArrayList<String>();
 		
-		for( Eleve e : l ) {
-			if (!classes.contains(e.getClasse())) {
-				classes.add(e.getClasse());
-			}
-		}
-		
-		List<Double> moyenneParClasse = new ArrayList<Double>();
-		for ( String s : classes) {
-			Double tot = 0.0 ;
-			int cpt =0;
-			for ( Eleve e : l ) {
-				if(e.getClasse() == s) {
-				cpt++;
-				tot+= CalculMoyenneGenerale(e);
+	List<Eleve> eleves = l.stream().sorted((o1, o2)->o1.getClasse().
+            compareTo(o2.getClasse())).
+            collect(Collectors.toList());
+			
+			double tot =0.0;
+			int cpt= 0;
+			String olderClasse = eleves.get(0).getClasse();
+			ArrayList<Double> moyenneParClasse = new ArrayList<Double>();
+			for ( Eleve e : eleves){
+				
+				if (!e.getClasse().equals(olderClasse)) {
+					olderClasse =e.getClasse();
+					moyenneParClasse.add(tot/cpt);
+					
+					tot = 0.0;
+					cpt=0;
 				}
-			}
+				
+				tot+= CalculMoyenneGenerale(e);
+				cpt++;
+				}
+			
 			moyenneParClasse.add(tot/cpt);
+			
+			return moyenneParClasse;
 		}
-		return moyenneParClasse;
-	}
+		
+	
 
 }

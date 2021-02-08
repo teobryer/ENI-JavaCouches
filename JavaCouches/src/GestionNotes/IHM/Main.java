@@ -32,7 +32,7 @@ public class Main {
 
 		
 		Eleve eleve1 =  new Eleve("Doe", "John", "6A");
-		Eleve eleve2 =  new Eleve("Delarue", "Luc", "6A");
+		Eleve eleve2 =  new Eleve("Delarue", "Luc", "6B");
 		Eleve eleve3 =  new Eleve("Patrick", "John", "6B");
 		Eleve eleve4 =  new Eleve("Dutertre", "Laurent", "6B");
 		Eleve eleve5 =  new Eleve("Lou", "Marie", "6C");
@@ -60,6 +60,8 @@ public class Main {
 		for (Eleve e : eleves) {
 			System.out.println(e.getFirstName() +" " + e.getLastName()+" : "+ manager.CalculMoyenneGenerale(e));
 		}
+		
+		System.out.println(manager.CalculMoyenneParClasse(eleves));
 	
 	
 		
