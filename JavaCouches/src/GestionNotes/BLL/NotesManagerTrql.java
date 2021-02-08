@@ -39,7 +39,7 @@ public class NotesManagerTrql implements INotesManager{
 				best = e;
 			}
 		}
-		return null;
+		return best;
 	}
 
 	@Override
