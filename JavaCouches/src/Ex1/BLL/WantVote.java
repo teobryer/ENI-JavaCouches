@@ -36,7 +36,7 @@ public class WantVote {
 	}
 	
 	
-private List<String> ListEligibleFr(){
+private static List<String> ListEligibleFr(){
 	List<String> list = new ArrayList<String>();
 	for ( NationnaliteEligibleInFrance n : NationnaliteEligibleInFrance.values()) {
 		list.add(n.name());
@@ -44,7 +44,7 @@ private List<String> ListEligibleFr(){
 	return list;
 }
 
-private List<String> ListEligibleEU(){
+private static List<String> ListEligibleEU(){
 	
 	List<String> list = new ArrayList<String>();
 	for ( NationnaliteEligibleInEu n : NationnaliteEligibleInEu.values()) {
@@ -63,7 +63,7 @@ private int DiffBetweenBornNNow() {
 	    Calendar a = this.dateNaissance;
 	    int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
 	    if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) || 
-	        (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
+	        (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DAY_OF_MONTH) > b.get(Calendar.DAY_OF_MONTH))) {
 	        diff--;
 	    }
 	    return diff;
