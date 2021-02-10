@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Eleve {
 	
+	@Override
+	public String toString() {
+		return "Eleve [lastName=" + lastName + ", firstName=" + firstName + ", notes=" + notes + ", classe=" + classe
+				+ "]";
+	}
+
+
 	String lastName;
 	String firstName;
 	List<Double> notes;
