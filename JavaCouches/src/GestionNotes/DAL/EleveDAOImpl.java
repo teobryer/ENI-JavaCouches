@@ -46,7 +46,7 @@ public class EleveDAOImpl implements EleveDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				// TODO : ajouter la gestion de l'idCar dans la BO et le récupérer ici
-				
+				// gitignore
 				@SuppressWarnings("unchecked")
 				ArrayList<Double> notesList= (ArrayList<Double>) new Gson().fromJson(rs.getString("notesJson"),
 	                    new TypeToken<ArrayList<Double>>() {
