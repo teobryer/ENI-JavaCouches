@@ -1,34 +1,54 @@
 package papeterie.bo;
 
 public class Ramette extends Article {
+	private int grammage;
 
-    private int grammage;
+	public Ramette(){
+		
+	}
+	
+	public Ramette(Integer idArticle, String marque, String ref,  String designation, float pu, int qte, int grammage) {
+		setIdArticle(idArticle);
+		setReference(ref);
+		setMarque(marque);
+		setDesignation(designation);
+		setPrixUnitaire(pu);
+		setQteStock(qte);
+		setGrammage(grammage);
+	}
+	
+	public Ramette( String marque, String ref,  String designation, float pu, int qte, int grammage) {
+		this(null, marque, ref, designation, pu, qte, grammage);
+	}
 
-/*    public Ramette() {
-        super();
-    }*/
+	/**
+	 * @return the grammage
+	 */
+	public int getGrammage() {
+		return grammage;
+	}
 
-    public Ramette(Integer idArticle, String marque, String reference, String designation, float prixUnitaire, int qteStock, int grammage) {
-        super(idArticle, marque, reference, designation, prixUnitaire, qteStock);
-        this.grammage = grammage;
-    }
+	/**
+	 * @param grammage
+	 *            the grammage to set
+	 */
+	public void setGrammage(int grammage) {
+		this.grammage = grammage;
+	}
 
-    public Ramette(String marque, String reference, String designation, float prixUnitaire, int qteStock, int grammage) {
-        super(marque, reference, designation, prixUnitaire, qteStock);
-        this.grammage = grammage;
-    }
-
-    public int getGrammage() {
-        return grammage;
-    }
-
-    public void setGrammage(int grammage) {
-        this.grammage = grammage;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() +
-                ", grammage=" + grammage;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(super.toString());
+		buffer.append(" ");
+		buffer.append("Ramette [grammage=");
+		buffer.append(getGrammage());
+		buffer.append("]");
+		return buffer.toString();
+	}
 }
