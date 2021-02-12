@@ -10,7 +10,7 @@ public class Herbivore implements RegimeAlimentaire {
 
 	@Override
 	public void manger() {
-		System.out.println("*mange une bonne salade");
+		System.out.println("* mange une bonne salade *");
 		
 	}
 
