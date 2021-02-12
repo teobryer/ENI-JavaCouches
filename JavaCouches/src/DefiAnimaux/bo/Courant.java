@@ -8,6 +8,12 @@ public class Courant implements Locomotion {
 		return "Courant";
 	}
 
+	@Override
+	public void seDeplacer() {
+		 System.out.println("* tape son meilleur sprint *");
+		
+	}
+
 	
 
 }

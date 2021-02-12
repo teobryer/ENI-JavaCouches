@@ -8,4 +8,10 @@ public class Carnivore implements RegimeAlimentaire {
 		return "Carnivore";
 	}
 
+	@Override
+	public void manger() {
+		System.out.println("* mange un bon rumsteak *");
+		
+	}
+
 }

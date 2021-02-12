@@ -8,6 +8,14 @@ public class Volant implements Locomotion {
 		return "Volant";
 	}
 
+	@Override
+	public void seDeplacer() {
+		 System.out.println("* deploie ses ailes *");
+		
+	}
+	
+	
+
 	
 
 }

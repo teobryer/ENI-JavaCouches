@@ -8,4 +8,10 @@ public class Mechant implements Caractere {
 		return "Méchant";
 	}
 
+	@Override
+	public void exprimerSonHumeur() {
+	System.out.println("* grogne *");
+		
+	}
+
 }

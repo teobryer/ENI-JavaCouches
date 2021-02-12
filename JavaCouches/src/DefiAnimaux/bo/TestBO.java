@@ -7,6 +7,10 @@ public class TestBO {
 	
 	
 	System.out.println(r.toString());
+	
+	r.getCaractere().exprimerSonHumeur();
+	r.getLocomotion().seDeplacer();
+	r.getRegimeAlimentaire().manger();
 	}
 
 }

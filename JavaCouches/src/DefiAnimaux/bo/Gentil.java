@@ -8,4 +8,10 @@ public class Gentil implements Caractere {
 		return "Gentil";
 	}
 
+	@Override
+	public void exprimerSonHumeur() {
+		System.out.println("* sifflote *");
+		
+	}
+
 }

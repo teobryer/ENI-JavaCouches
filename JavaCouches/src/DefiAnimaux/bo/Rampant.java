@@ -8,6 +8,12 @@ public class Rampant implements Locomotion {
 		return "Rampant";
 	}
 
+	@Override
+	public void seDeplacer() {
+		 System.out.println("* se déplace en rampant *");
+		
+	}
+
 	
 
 }
