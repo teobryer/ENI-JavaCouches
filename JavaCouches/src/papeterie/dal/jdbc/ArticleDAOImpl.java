@@ -25,7 +25,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	private String DELETE = "  USE PAPETERIE_DB DELETE FROM Articles WHERE idArticle= ?";
 	
 	@Override
-	public Article selectById(int id) throws ArticleDALException {
+	public Article selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		Article art = new Ramette();
 		try (Connection cnx = JdbcTools.getConnection()) {
@@ -71,12 +71,12 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ArticleDALException("Problème dans la sélection d'article");
+			throw new DALException("Problème dans la sélection d'article");
 		}
 		return art;
 	}
 	@Override
-	public List<Article> selectAll() throws ArticleDALException {
+	public List<Article> selectAll() throws DALException {
 		List<Article> listart = new ArrayList<Article>();
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_ALL);
@@ -121,12 +121,12 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ArticleDALException("Problème dans la sélection de tous les articles");
+			throw new DALException("Problème dans la sélection de tous les articles");
 		}
 		return listart;
 	}
 	@Override
-	public void update(Article article) throws ArticleDALException {
+	public void update(Article article) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE);
 			
@@ -162,12 +162,12 @@ public class ArticleDAOImpl implements ArticleDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ArticleDALException("Problème dans la mise à jour d'un article");
+			throw new DALException("Problème dans la mise à jour d'un article");
 		}	
 		
 	}
 	@Override
-	public void insert(Article article) throws ArticleDALException {
+	public void insert(Article article) throws DALException {
 		
 		
 		try (Connection cnx = JdbcTools.getConnection()) {
@@ -211,11 +211,11 @@ public class ArticleDAOImpl implements ArticleDAO {
 			System.out.println(generatedKey);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ArticleDALException("Problème dans l'insertion d'un article");
+			throw new DALException("Problème dans l'insertion d'un article");
 		}		
 	}
 	@Override
-	public void delete(int id) throws ArticleDALException {
+	public void delete(int id) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement stmt = cnx.prepareStatement(DELETE);
 			
@@ -231,7 +231,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ArticleDALException("Problème dans la suppression d'un article");
+			throw new DALException("Problème dans la suppression d'un article");
 		}	
 		
 	}

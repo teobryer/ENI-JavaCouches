@@ -1,8 +1,8 @@
 package papeterie.dal.jdbc;
 
-public class ArticleDALException extends Exception {
+public class DALException extends Exception {
 
-	public ArticleDALException(String message) {
+	public DALException(String message) {
 		super(message);
 	}
 

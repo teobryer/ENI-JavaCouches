@@ -13,6 +13,17 @@ public class Panier {
 	//Attributs d'instance
 	private List<Ligne> lignesPanier;
 	private float montant;
+	private int idPanier;
+
+	public int getIdPanier() {
+		return idPanier;
+	}
+
+
+	public void setIdPanier(int idPanier) {
+		this.idPanier = idPanier;
+	}
+
 
 	//Constructeurs
 	public Panier(){
@@ -36,9 +47,9 @@ public class Panier {
 	 * @param qte
 	 * 
 	 */
-	public void addLigne(Article article, int qte) {
+	public void addLigne(Article article, int qte, int idLigne) {
 
-		Ligne ligneAdding = new Ligne(article, qte);
+		Ligne ligneAdding = new Ligne(article, qte, idLigne);
 		lignesPanier.add(ligneAdding);
 	}
 

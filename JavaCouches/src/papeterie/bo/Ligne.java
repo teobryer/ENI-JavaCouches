@@ -5,12 +5,22 @@ public class Ligne
 	//Attributs
 	protected int qte;
 	protected Article article;
+	protected int idLigne;
 	
+	public int getIdLigne() {
+		return idLigne;
+	}
+
+	public void setIdLigne(int idLigne) {
+		this.idLigne = idLigne;
+	}
+
 	//Constructeurs
-	Ligne(Article article, int qte) 
+	Ligne(Article article, int qte, int idLig) 
 	{
 			setArticle(article);
 			setQte(qte);
+			setIdLigne(idLig);
 	}
 	
 	//Getters et Setters

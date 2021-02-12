@@ -59,7 +59,7 @@ public class AppliTestBO1 {
 		//******************
 		Panier panier = new Panier();
 		try {
-			panier.addLigne(articles.get(0), 2);
+			panier.addLigne(articles.get(0), 2,0);
 			System.out.println("\nREM : Affichage de l'article de la premiere ligne du panier");
 			System.out.println(panier.getLigne(0).getArticle());
 			System.out.println("---------------------------------------------------------------");
@@ -70,9 +70,9 @@ public class AppliTestBO1 {
 
 
 		try {
-			panier.addLigne(articles.get(1), 13);
-			panier.addLigne(articles.get(2), 12);
-			panier.addLigne(articles.get(3), 5);
+			panier.addLigne(articles.get(1), 13, 0);
+			panier.addLigne(articles.get(2), 12, 0);
+			panier.addLigne(articles.get(3), 5, 0);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
