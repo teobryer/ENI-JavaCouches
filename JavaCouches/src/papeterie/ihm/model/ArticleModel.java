@@ -14,9 +14,7 @@ public class ArticleModel {
 	private int grammage;
 	private String couleur;
 	private int qteStock;
-	
-	
-	
+
 	public ArticleModel() {
 		super();
 		this.designation = "";
@@ -93,28 +91,22 @@ public class ArticleModel {
 		this.qteStock = qteStock;
 	}
 
-	public Article generatedArticle(){
+	public Article generatedArticle() {
 		Article a = null;
-		if(this.typeArt == "Stylo") {
+		if (this.typeArt == "Stylo") {
 			a = new Stylo();
-			
-			
-		}
-		else {
+
+		} else {
 			a = new Ramette();
-		
+
 		}
 		a.setDesignation(this.designation);
 		a.setMarque(this.marque);
 		a.setPrixUnitaire(this.prixU);
 		a.setReference(this.ref);
 		a.setQteStock(this.qteStock);
-			return a;
-		
-	}
-	
-	
-	
-}
- 
+		return a;
 
+	}
+
+}

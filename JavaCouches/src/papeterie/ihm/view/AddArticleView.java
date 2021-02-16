@@ -1,6 +1,5 @@
 package papeterie.ihm.view;
 
-
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,14 +14,13 @@ import javax.swing.SwingConstants;
 
 import papeterie.ihm.controller.ArticleController;
 
-
 public class AddArticleView extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
@@ -62,15 +60,14 @@ public class AddArticleView extends JFrame {
 	 * Create the frame.
 	 */
 	public AddArticleView() {
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 351, 673);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{100, 203, 0};
-		gridBagLayout.rowHeights = new int[]{70, 70, 70, 70, 70, 70, 70, 70, 70, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 100, 203, 0 };
+		gridBagLayout.rowHeights = new int[] { 70, 70, 70, 70, 70, 70, 70, 70, 70, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
@@ -170,8 +167,9 @@ public class AddArticleView extends JFrame {
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 8;
 		getContentPane().add(getBtnNewButton_1(), gbc_btnNewButton_1);
-		
+
 	}
+
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("D\u00E9signation");
@@ -179,60 +177,70 @@ public class AddArticleView extends JFrame {
 		}
 		return lblNewLabel_3;
 	}
+
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("Type article");
 		}
 		return lblNewLabel_2;
 	}
+
 	private JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("Prix unitaire");
 		}
 		return lblNewLabel_4;
 	}
+
 	private JLabel getLblNewLabel_5() {
 		if (lblNewLabel_5 == null) {
 			lblNewLabel_5 = new JLabel("Marque");
 		}
 		return lblNewLabel_5;
 	}
+
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Vider");
 		}
 		return btnNewButton;
 	}
+
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Ajouter article");
 		}
 		return btnNewButton_1;
 	}
+
 	private JLabel getLblNewLabel_6() {
 		if (lblNewLabel_6 == null) {
 			lblNewLabel_6 = new JLabel("R\u00E9f\u00E9rence");
 		}
 		return lblNewLabel_6;
 	}
+
 	private JLabel getLblNewLabel_7() {
 		if (lblNewLabel_7 == null) {
 			lblNewLabel_7 = new JLabel("Grammage");
 		}
 		return lblNewLabel_7;
 	}
+
 	private JLabel getLblNewLabel_8() {
 		if (lblNewLabel_8 == null) {
 			lblNewLabel_8 = new JLabel("Couleur");
 		}
 		return lblNewLabel_8;
 	}
+
 	private JLabel getLblNewLabel_9() {
 		if (lblNewLabel_9 == null) {
 			lblNewLabel_9 = new JLabel("Quantit\u00E9 stock");
 		}
 		return lblNewLabel_9;
 	}
+
 	private JTextField getDesignation() {
 		if (designation == null) {
 			designation = new JTextField(ArticleController.getInstance().getMyModel().getDesignation());
@@ -240,6 +248,7 @@ public class AddArticleView extends JFrame {
 		}
 		return designation;
 	}
+
 	private JTextField getTypeArt() {
 		if (typeArt == null) {
 			typeArt = new JTextField(ArticleController.getInstance().getMyModel().getTypeArt());
@@ -247,6 +256,7 @@ public class AddArticleView extends JFrame {
 		}
 		return typeArt;
 	}
+
 	private JTextField getPrixU() {
 		if (prixU == null) {
 			prixU = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getPrixU()));
@@ -254,6 +264,7 @@ public class AddArticleView extends JFrame {
 		}
 		return prixU;
 	}
+
 	private JTextField getMarque() {
 		if (marque == null) {
 			marque = new JTextField(ArticleController.getInstance().getMyModel().getMarque());
@@ -261,6 +272,7 @@ public class AddArticleView extends JFrame {
 		}
 		return marque;
 	}
+
 	private JTextField getRef() {
 		if (ref == null) {
 			ref = new JTextField(ArticleController.getInstance().getMyModel().getRef());
@@ -268,6 +280,7 @@ public class AddArticleView extends JFrame {
 		}
 		return ref;
 	}
+
 	private JTextField getGrammage() {
 		if (grammage == null) {
 			grammage = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getGrammage()));
@@ -275,6 +288,7 @@ public class AddArticleView extends JFrame {
 		}
 		return grammage;
 	}
+
 	private JTextField getCouleur() {
 		if (couleur == null) {
 			couleur = new JTextField(ArticleController.getInstance().getMyModel().getCouleur());
@@ -282,6 +296,7 @@ public class AddArticleView extends JFrame {
 		}
 		return couleur;
 	}
+
 	private JTextField getQteStock() {
 		if (qteStock == null) {
 			qteStock = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getQteStock()));
