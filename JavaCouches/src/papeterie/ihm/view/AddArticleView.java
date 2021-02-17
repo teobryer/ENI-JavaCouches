@@ -11,17 +11,26 @@ import javax.swing.JLabel;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import papeterie.ihm.controller.ArticleController;
 
-public class AddArticleView extends JFrame {
+import papeterie.ihm.model.ArticleModel;
+import papeterie.ihm.Controller;
+import papeterie.ihm.ObserverController;
+
+public class AddArticleView extends JFrame implements ObserverController<ArticleModel> {
 
 	/**
 	 * 
 	 */
+
+	private Controller<ArticleModel> controller;
 	private static final long serialVersionUID = 1L;
 
 	private JLabel lblNewLabel_3;
+	private JLabel messageInformations;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
@@ -39,6 +48,7 @@ public class AddArticleView extends JFrame {
 	private JTextField grammage;
 	private JTextField couleur;
 	private JTextField qteStock;
+	private boolean canUpdate = true;;
 
 	/**
 	 * Launch the application.
@@ -47,8 +57,15 @@ public class AddArticleView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddArticleView frame = new AddArticleView();
+					ArticleController controller = new ArticleController();
+
+					AddArticleView frame = new AddArticleView(controller);
 					frame.setVisible(true);
+					Log log = new Log(controller);
+					
+					controller.action("START");
+					
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,10 +76,9 @@ public class AddArticleView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddArticleView() {
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 351, 673);
+	private void initIHM() {
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 100, 203, 0 };
 		gridBagLayout.rowHeights = new int[] { 70, 70, 70, 70, 70, 70, 70, 70, 70, 0 };
@@ -167,6 +183,20 @@ public class AddArticleView extends JFrame {
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 8;
 		getContentPane().add(getBtnNewButton_1(), gbc_btnNewButton_1);
+		
+		GridBagConstraints gbc_Message = new GridBagConstraints();
+		gbc_Message.gridx = 0;
+		gbc_Message.gridwidth=2;
+		gbc_Message.gridy = 9;
+		getContentPane().add(getMessageInformations(), gbc_Message);
+	}
+
+	public AddArticleView(Controller<ArticleModel> controller) {
+		this.controller = controller;
+		this.controller.addObserver(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 351, 700);
+		initIHM();
 
 	}
 
@@ -178,6 +208,16 @@ public class AddArticleView extends JFrame {
 		return lblNewLabel_3;
 	}
 
+	
+	private JLabel getMessageInformations() {
+		if (messageInformations == null) {
+			messageInformations = new JLabel("");
+			messageInformations.setHorizontalAlignment(SwingConstants.CENTER);
+		}
+		return messageInformations;
+	}
+	
+	
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("Type article");
@@ -210,6 +250,8 @@ public class AddArticleView extends JFrame {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Ajouter article");
 		}
+		
+		btnNewButton_1.addActionListener(e -> controller.action("ADD_ARTICLE"));
 		return btnNewButton_1;
 	}
 
@@ -246,6 +288,30 @@ public class AddArticleView extends JFrame {
 			designation = new JTextField(ArticleController.getInstance().getMyModel().getDesignation());
 			designation.setColumns(20);
 		}
+
+		designation.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+				//ArticleController.getInstance().getMyModel().setDesignation(designation.getText());
+				//getMarque().setText(designation.getText());
+				if (canUpdate) {
+					// update();
+				}
+
+			}
+		});
 		return designation;
 	}
 
@@ -254,6 +320,29 @@ public class AddArticleView extends JFrame {
 			typeArt = new JTextField(ArticleController.getInstance().getMyModel().getTypeArt());
 			typeArt.setColumns(20);
 		}
+
+		typeArt.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				ArticleController.getInstance().getMyModel().setTypeArt(typeArt.getText());
+//				if (canUpdate) {
+//					// update();
+//
+//				}
+			}
+		});
 		return typeArt;
 	}
 
@@ -262,6 +351,29 @@ public class AddArticleView extends JFrame {
 			prixU = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getPrixU()));
 			prixU.setColumns(20);
 		}
+
+		prixU.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				ArticleController.getInstance().getMyModel().setPrixU(Float.parseFloat(prixU.getText()));
+//				if (canUpdate) {
+//					// update();
+//
+//				}
+			}
+		});
 		return prixU;
 	}
 
@@ -270,6 +382,29 @@ public class AddArticleView extends JFrame {
 			marque = new JTextField(ArticleController.getInstance().getMyModel().getMarque());
 			marque.setColumns(20);
 		}
+
+		marque.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				ArticleController.getInstance().getMyModel().setMarque(marque.getText());
+//				if (canUpdate) {
+//					/// update();
+//
+//				}
+			}
+		});
 		return marque;
 	}
 
@@ -278,6 +413,29 @@ public class AddArticleView extends JFrame {
 			ref = new JTextField(ArticleController.getInstance().getMyModel().getRef());
 			ref.setColumns(20);
 		}
+
+		ref.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				ArticleController.getInstance().getMyModel().setTypeArt(ref.getText());
+//				if (canUpdate) {
+//					// update();
+//
+//				}
+			}
+		});
 		return ref;
 	}
 
@@ -286,6 +444,30 @@ public class AddArticleView extends JFrame {
 			grammage = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getGrammage()));
 			grammage.setColumns(20);
 		}
+
+		grammage.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				if (canUpdate) {
+//					ArticleController.getInstance().getMyModel().setGrammage(Integer.parseInt(grammage.getText()));
+//
+//					// update();
+//				}
+
+			}
+		});
 		return grammage;
 	}
 
@@ -294,15 +476,116 @@ public class AddArticleView extends JFrame {
 			couleur = new JTextField(ArticleController.getInstance().getMyModel().getCouleur());
 			couleur.setColumns(20);
 		}
+
+		couleur.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				if (canUpdate) {
+//					ArticleController.getInstance().getMyModel().setTypeArt(couleur.getText());
+//
+//					// update();
+//				}
+
+			}
+		});
+
 		return couleur;
 	}
 
 	private JTextField getQteStock() {
 		if (qteStock == null) {
+			System.out.println("1 - " + ArticleController.getInstance().getMyModel().getQteStock());
+			System.out.println("2 - " + String.valueOf(ArticleController.getInstance().getMyModel().getQteStock()));
 			qteStock = new JTextField(String.valueOf(ArticleController.getInstance().getMyModel().getQteStock()));
 			qteStock.setColumns(20);
 		}
+
+		qteStock.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+
+//				System.out.println(qteStock.getText());
+//				if (canUpdate) {
+//					ArticleController.getInstance().getMyModel()
+//							.setQteStock((int) (Integer.parseInt(qteStock.getText())));
+//
+//					// update();
+//				}
+
+			}
+		});
 		return qteStock;
 	}
+
+	@Override
+	public void fromModel(ArticleModel model) {
+		getQteStock().setText(String.valueOf(model.getQteStock()));
+		getCouleur().setText(model.getCouleur());
+		getGrammage().setText(String.valueOf( model.getGrammage()));
+		getRef().setText(model.getRef());
+		getMarque().setText(model.getMarque());
+		getPrixU().setText( String.valueOf( model.getPrixU()));
+		getTypeArt().setText(model.getDesignation());
+		getDesignation().setText(model.getDesignation());
+		getMessageInformations().setText(model.getMessage());
+		
+		
+		
+
+	}
+
+	@Override
+	public ArticleModel populateModel(ArticleModel model) {
+		model.setCouleur(getCouleur().getText());
+		model.setDesignation(getDesignation().getText());
+		model.setGrammage(Integer.parseInt(getGrammage().getText()));
+		model.setMarque(getMarque().getText());
+		model.setPrixU(Float.parseFloat(getPrixU().getText()));
+		model.setQteStock(Integer.parseInt(getQteStock().getText()));
+		model.setRef(getRef().getText());
+		model.setTypeArt(getTypeArt().getText());
+		model.setMessage(getMessageInformations().getText());
+		
+		return model;
+	}
+
+//	private void update() {
+//		canUpdate =false;
+//	
+//		System.out.println("3 - " + ArticleController.getInstance().getMyModel().getQteStock());
+//		String qteStock = String.valueOf( ArticleController.getInstance().getMyModel().getQteStock());
+//		getQteStock().setText(qteStock);
+//		getCouleur().setText(ArticleController.getInstance().getMyModel().getCouleur());
+//		getGrammage().setText(String.valueOf(ArticleController.getInstance().getMyModel().getGrammage()));
+//		getRef().setText(ArticleController.getInstance().getMyModel().getRef());
+//		getMarque().setText(ArticleController.getInstance().getMyModel().getMarque());
+//		getPrixU().setText(String.valueOf(ArticleController.getInstance().getMyModel().getPrixU()));
+//		getTypeArt().setText(ArticleController.getInstance().getMyModel().getDesignation());
+//		//getDesignation().setText(ArticleController.getInstance().getMyModel().getDesignation());
+//		canUpdate = true;
+//		}
 
 }

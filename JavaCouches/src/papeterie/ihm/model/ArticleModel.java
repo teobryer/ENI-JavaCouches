@@ -14,6 +14,12 @@ public class ArticleModel {
 	private int grammage;
 	private String couleur;
 	private int qteStock;
+	
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
 
 	public ArticleModel() {
 		super();
@@ -107,6 +113,18 @@ public class ArticleModel {
 		a.setQteStock(this.qteStock);
 		return a;
 
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "ArticleModel [designation=" + designation + ", typeArt=" + typeArt + ", prixU=" + prixU + ", marque="
+				+ marque + ", ref=" + ref + ", grammage=" + grammage + ", couleur=" + couleur + ", qteStock=" + qteStock
+				+ ", message=" + message + "]";
 	}
 
 }
